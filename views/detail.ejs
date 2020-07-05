@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book query</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/home.css">
+    <script src="/js/home.js"></script>
+
+    <script>
+        const apikey = 'AIzaSyC74R_DKJS4HkVS38_WrGFUx6sXlOhoWhM';
+
+        window.onload = function() {
+            console.log(data);
+        }
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <%- include("./partials/nav.ejs")  %>
+
+    <%- include("./partials/login.ejs") %>
+    <%- include("./partials/register.ejs") %>
+
+    <div class="d-flex justify-content-around">
+        <div class="media">
+            <img src="/images/the_girl_on_the_train.jpg" class="mx-5 mt-5" alt="book cover" style="height: 15rem;">
+            <div class="media-body mt-5">
+                <h5 class="mt-0">
+                    Name : <br><%= data.items && data.items[0].volumeInfo.title %><br>
+                    Author : <br> <br>
+                    Published Date : <br> <br>
+                    Published by : <br> <br>
+                    Tags : <br> <br>
+                    Buy At : <br>
+                    <div class="mt-2">
+                        <button class="btn btn-primary mx-auto">Amazon</button>
+                        <button class="btn btn-primary mx-auto">Flipkart</button>
+                    </div>
+                </h5>
+            </div>
+        </div>
+        <div class="mt-5">
+            <h5>Should You read it or not :</h5>
+            <div class="progress mt-3">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"> 75%</div>
+            </div>
+            <br>
+            <div class="progress">
+                <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> 25%</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet deleniti eius quidem eos vitae facere qui fuga necessitatibus laboriosam, blanditiis molestiae doloribus culpa laudantium? Doloremque nostrum neque quaerat exercitationem sint.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et ipsa tempora aut ducimus esse doloremque, amet laudantium aliquam tempore magni minus perferendis eaque, quaerat delectus quos placeat unde harum recusandae?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto laborum inventore eveniet hic, ad atque ullam repellendus sequi officia adipisci reiciendis distinctio maiores, quae cumque recusandae aut nesciunt! Quisquam, placeat.
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo ullam, accusamus optio suscipit officia earum repellat quae omnis veniam itaque nostrum ipsum et molestiae, asperiores sequi, saepe a vero accusantium!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, hic quaerat. Reiciendis beatae, architecto inventore ipsa repudiandae consequatur voluptas dolorem consectetur sequi vel, molestias impedit placeat debitis, pariatur facere voluptatum.
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt, facilis enim. Nobis, ex laudantium laboriosam laborum natus inventore nam veniam earum odio, itaque optio sit numquam, autem corporis assumenda soluta?
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem, harum et itaque repellat delectus laborum. Omnis consequuntur esse dolore perspiciatis ipsum ratione odit deserunt deleniti, vel unde illum expedita corporis?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, esse? Molestiae adipisci eum esse quidem beatae quasi doloribus aliquam odio tempore vel non sed ipsam, eligendi exercitationem, quaerat optio ullam.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio consequatur laudantium nobis voluptatum libero vero mollitia facilis dolorem, officiis impedit iusto ratione minus? Delectus recusandae beatae voluptates aliquid commodi explicabo.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <%- include("./partials/footer.ejs")  %>
+</body>
+</html>

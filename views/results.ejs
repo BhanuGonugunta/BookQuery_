@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Query</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/home.css">
+    <script src="/js/home.js"></script>
+
+    <script>
+        function myfun(isbn) {
+            var obj = {'ISBN' : isbn};
+
+            fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:'+obj.ISBN)
+                .then(response => response.json())
+                .then(data => console.log(data))
+
+            const options = {
+                method : 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body : JSON.stringify(obj)
+            };
+            fetch('/detail', options)
+        }
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <%- include("./partials/nav.ejs")  %>
+
+    <%- include("./partials/login.ejs") %>
+    <%- include("./partials/register.ejs") %>
+
+    <h1 id="myvalue"></h1>
+
+    <div class="col-md-3 ml-auto mt-3">
+        <form action="/results" method="POST">
+            <div class="input-group">
+                <input type="search" name="name" class="form-control" placeholder="Search">
+                <button class="btn btn-primary ml-2"><a href="/results" style="color: white; text-decoration: none;">Search</a></button>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- <% console.log(data) %> -->
+
+    <div class="row mx-auto">
+        <% data.items.forEach(item => { %>
+            <div class="card my-4 mx-auto col-sm-3" style="width: 18rem;">
+                <div class="card-body">
+                  <img class="card-img-top" src="<%= item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.thumbnail %>" alt="Book Cover" style="height: 20rem;">
+                  <h5 class="card-title"><%= typeof item.volumeInfo.title == 'undefined' ? 'No title available' : item.volumeInfo.title.slice(0,20) %>...</h5>
+                  <p class="card-text"><%= typeof item.volumeInfo.description == 'undefined' ? 'No description available' : item.volumeInfo.description.slice(0, 90) %>.... <br>
+                    <a href="/detail" onclick="myfun('<%= item.volumeInfo.industryIdentifiers && item.volumeInfo.industryIdentifiers[1] && item.volumeInfo.industryIdentifiers[1].identifier %>')">See more</a>
+                  </p>
+                  <div class="row">
+                    <button class="btn btn-primary mx-auto"><img src="/images/like.svg" style="height: 2rem;">&nbsp; like </a>
+                    <button class="btn btn-primary mx-auto"><img src="/images/dislike.svg" style="height: 2rem;">&nbsp; dislike </a>
+                  </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+    <!-- Footer -->
+    <%- include("./partials/footer.ejs")  %>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookQuery</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <%- include("./partials/nav.ejs")  %>
+
+  <!-- Search bar -->
+  <div class="col-md-3 ml-auto mt-3">
+      <form action="/results" method="POST">
+          <div class="input-group">
+              <input type="search" name="name" class="form-control" placeholder="Search">
+              <button class="btn btn-primary ml-2"><a href="/results" style="color: white; text-decoration: none;">Search</a></button>
+          </div>
+      </form>
+  </div>
+
+  <%- include("./partials/login.ejs") %>
+  <%- include("./partials/register.ejs") %>
+
+  <!-- Content(books) -->
+  <div class="row mx-auto">
+
+    <% if (books.length > 0) { %>
+      <% books.forEach(book => { %>
+        <div class="card my-3 mx-auto" style="width: 18rem;">
+          <img class="card-img-top" src="/images/gone_girl.jpg" alt="Book Cover" style="height: 20rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= book.title %></h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div class="row">
+              <a href="#" class="btn btn-primary mx-auto"><img src="/images/like.svg" style="height: 2rem;">&nbsp; like </a>
+              <a href="#" class="btn btn-primary mx-auto"><img src="/images/dislike.svg" style="height: 2rem;">&nbsp; dislike </a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } %>
+
+  </div> 
+
+  <!-- Footer -->
+
+  <%- include("./partials/footer.ejs")  %>
+   
+</body>
+</html>

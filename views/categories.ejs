@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Query</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+    <script>
+        function myfun(title) {
+            var obj = {'name' : title};
+            console.log(obj);
+            console.log(typeof obj);
+            const options = {
+                method : 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body : JSON.stringify(obj)
+            };
+            fetch('/results', options);
+        }
+    </script>
+</head>
+<body class="p-3 mb-2 bg-secondary text-white">
+    <div class="row ml-2 mt-2">
+        <h1 class="display-4">Categories</h1>
+        <img src="/images/close_1.svg" class=" mt-1 mr-3 ml-auto" style="height: 4rem;" onclick="window.location.replace('/');">
+    </div>
+    <div class="row ml-3">
+        <ul class="list-unstyled mt-5">
+        <% if (categories.length > 0) { %>
+            <% var count = 0 %>
+            <% categories.forEach(category => { %>
+                <li class="list-inline-item mt-5" style="margin-right: 160px;"><h3><a style="color: aliceblue;" onclick="myfun('<%= category.title%>')"><%= category.title %></a></h3></li>
+            <% }) %>
+        <% } %>
+        </ul>
+    </div>
+
+    
+</body>
+</html>
